@@ -1,0 +1,421 @@
+@media screen and (max-width: 319px) {
+    html {
+    font-size: 85.33333px; } }
+@media screen and (min-width: 320px) and (max-width: 359px) {
+html {
+font-size: 85.33333px; } }
+@media screen and (min-width: 360px) and (max-width: 374px) {
+html {
+font-size: 96px; } }
+@media screen and (min-width: 375px) and (max-width: 383px) {
+html {
+font-size: 100px; } }
+@media screen and (min-width: 384px) and (max-width: 399px) {
+html {
+font-size: 102.4px; } }
+@media screen and (min-width: 400px) and (max-width: 413px) {
+html {
+font-size: 106.66667px; } }
+@media screen and (min-width: 414px) and (max-width: 767px) {
+html {
+font-size: 110.4px; } }
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+html {
+font-size: 160.4px; } }
+@media screen and (min-width: 1024px){
+html {
+font-size: 210.4px; } }
+body{
+  font-size: 14px;
+}
+html,body,#big-box{
+    width:100%;
+    height:100%;
+    font-family: PingFangSC-Regular;
+}
+
+body.err{
+    background: url("../images/kai/loginPage/404page.jpg") no-repeat center;
+    background-size: cover;
+}
+
+*,textarea{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+#big-box,#home{
+    padding-top: 0.44rem;
+    position: relative;
+}
+
+
+/* 防止页面闪动 */
+[v-cloak] {
+    display: none;
+}
+
+.mint-tab-container-wrap{
+    height:100%;
+}
+/*清除浮动*/
+.clearfix:after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .clearfix {
+    zoom: 1;
+  }
+
+  /* 登录页面样式 */
+ /* 媒体查询 */
+/* 用户名、密码图标样式 */
+/*@media only screen and (max-device-width: 413px) {*/
+  /*iPhone 6 Portrait*/
+  /* 登录页面 */
+  @media only screen and (max-device-width: 413px) {
+    /*iPhone 6 Portrait*/
+    /* 登录页面 */
+    #login_from .mint-field .mint-cell-title > .mint-cell-text{
+      background: url("../images/kai/loginPage/user.png") no-repeat center;
+    }
+
+    #login_from .mint-field:nth-child(2) .mint-cell-title > .mint-cell-text{
+      background: url("../images/kai/loginPage/code.png") no-repeat center;
+    }
+    /* 图片删除按钮 */
+    .del_btn{
+      background: url("../images/kai/mainPage/close.png") no-repeat center right;
+    }
+    /* 超时图标 */
+    .timeout{
+      background: url("../images/kai/mainPage/moretime.png") no-repeat bottom right;
+    }
+
+  }
+
+  @media only screen and (min-device-width: 414px) {
+    /*iPhone 6+ Portrait*/
+    #login_from .mint-field .mint-cell-title > .mint-cell-text{
+      background: url("../images/kai/loginPage/user@1.5x.png") no-repeat center;
+    }
+
+    #login_from .mint-field:nth-child(2) .mint-cell-title > .mint-cell-text{
+      background: url("../images/kai/loginPage/code@1.5x.png") no-repeat center;
+    }
+
+    /* 图片删除按钮 */
+    .del_btn{
+      background: url("../images/kai/mainPage/close@1.5x.png") no-repeat center right;
+    }
+    /* 超时图标 */
+    .timeout{
+      background: url("../images/kai/mainPage/moretime@1.5x.png") no-repeat bottom right;
+    }
+  }
+#login_from .mint-cell-wrapper{
+  height:0.6rem;
+  background-image: none;
+  border-bottom: 0.02rem solid #fff;
+  align-items:flex-end;
+}
+#login_from .mint-field .mint-cell-title .mint-cell-text,
+#login_from .mint-field:nth-child(2) .mint-cell-title .mint-cell-text{
+  display: inline-block;
+  width: 0.4rem;
+  height:0.4rem;
+  background-size: 0.2rem;
+}
+
+#login_from .mint-field .mint-cell-title{
+  width:0.3rem;
+}
+
+#login_from .mint-field,
+#login_from .mint-field .mint-cell-value input{
+  background-color: rgba(0, 0, 0, 0);
+  color:#fff;
+  font-size: 0.15rem;
+}
+
+#login_from .mint-field .mint-cell-value input::-webkit-input-placeholder{ /*WebKit browsers*/
+  color: #fff;
+  opacity: 0.6;
+}
+
+#login_from .mint-field .mint-cell-value input::-moz-input-placeholder{ /*Mozilla Firefox*/
+  color: #fff;
+  opacity: 0.6;
+}
+/*修改标题栏样式*/
+.mint-header{
+    height:0.48rem;
+    font-size: 0.18rem;
+    background-color: #49A9EA;
+}
+
+.mint-header-title{
+    font-size: 0.17rem;
+}
+
+.mintui{
+    font-size: 0.22rem;
+}
+/*调整input样式*/
+button:focus {
+  outline: 0;
+}
+button:active {
+  background-color: #F0F0F0;
+}
+/*去除input点击时出现的边框*/
+input {outline:none;}
+
+
+select, textarea,
+input[type='text'],
+input[type='search'],
+input[type='password'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='date'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+input[type='number'],
+input[type='email'],
+input[type='url'],
+input[type='tel'],
+input[type='color']{
+    margin-left:0.1rem;
+    margin-bottom:0.06rem;
+    border:none;
+
+}
+/*下拉刷新图标*/
+.mint-spinner-snake{
+  margin: 0.2rem auto;
+}
+
+.mint-field .mint-cell-title,
+.mint-field .mint-cell-value{
+  width:0.7rem;
+  color:#333;
+}
+
+.hostBox .mint-cell .mint-cell-wrapper,
+.hostBox .mint-cell{
+  background-image: none;
+}
+
+.hostBox .mint-field .mint-cell-title{
+  width:0.6rem;
+  color:#fff;
+  font-size: 0.2rem;
+}
+
+.hostBox .mint-field-clear{
+  opacity: .2;
+  position: absolute;
+  right: 13px;
+  top:13px;
+}
+  .mint-button{
+      height: 0.5rem;
+      font-size: 0.18rem;
+
+  }
+  .mui-table-view-cell:after{
+      height:0.01rem;
+  }
+/* 默认按钮样式 */
+.mint-button--default{
+    background-color: #fff;
+}
+/* 提示框样式 */
+.mint-msgbox{
+    width:2.15rem;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  outline: none;
+  border-color: transparent;
+}
+/*login 页面中的删除图标*/
+.del_btn{
+  position: absolute;
+  top: -0.1rem;
+  font-size: 0.2rem;
+  right: -0.03rem;
+  display: block;
+  width:0.2rem;
+  height:0.2rem;
+  background-size: 0.2rem;
+}
+/* 超时图标 */
+.timeout{
+  display: inline-block;
+  width:0.14rem;
+  height:0.14rem;
+  background-size: 0.12rem;
+}
+/*开栓任务 搜索*/
+.search{
+  display: flex;
+  width:100%;
+  padding:8px 0;
+  margin-bottom:10px;
+  background-color: #fff;
+  /*flex-direction: ;*/
+}
+.search_input{
+  width:82%;
+  height:30px;
+  margin-left:4%;
+  display: flex;
+  flex-direction: row;
+  background-color: #F7F7F7;
+  line-height: 29px;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+.input-building{
+  width:38%;
+  padding-left:5%;
+  border-radius: 4px;
+}
+input::-webkit-input-placeholder{
+  color:#999;
+  font-size: 14px;
+}
+.input-unit{
+  width:30%;
+  padding-left:5%;
+  border-radius: 4px;
+
+}
+.search-btn{
+  background-color: #fff;
+  border:none;
+  height: 30px;
+  padding:0 5px;
+}
+.btn-search-bolt{
+  width:14%;
+  line-height: 30px;
+  text-align: center;
+
+}
+
+.mint-button--default{
+  font-size:14px;
+  color:#fff;
+}
+
+/*mell 底边线*/
+.mint-cell-wrapper{
+  /*background-position: bottom left;*/
+  font-size: 14px;
+}s
+/*mt-field 底边框线对齐，距离左边20px*/
+.mint-cell:first-child .mint-cell-wrapper {
+  background-origin: content-box;
+}
+/*  确认提示框*/
+.mint-msgbox{
+  width:3rem !important;
+  /*height: 170px!important;*/
+}
+.mint-msgbox-message{
+  color: #333!important;
+  font-size: 17px;
+  line-height: 83px;
+}
+.mint-msgbox-confirm,.mint-msgbox-cancel{
+  height:45px;
+}
+
+
+/*开栓，已开栓样式*/
+.kaishuan{
+  width:100%;
+  height: 100%;
+  position: fixed;
+  background-color:#F0F0F0;
+
+}
+.phone{
+  padding-left: 50px;
+}
+.list_model{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bolt_argument{
+  width: 94vw;
+  padding: 10px 2.5% 10px 3.5%;
+  display: flex;
+  flex-direction: column;
+  background-color:#fff;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height:30px ;
+  color:#595959;
+}
+
+.model_bottom{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.bolt_news{
+  width:60px;
+  height: 28px !important;
+  margin-top:16px;
+  background-color: #49A9EA;
+}
+.quit .mint-cell-wrapper {
+  text-align: center;
+  background-size: 95% 0!important;
+}
+.quit{
+  margin-top: 10px;
+}
+
+.el-input--prefix .el-input__inner{
+  height: 30px;
+  line-height: 30px;
+  margin:0;
+  border-radius: 0;
+  border:1px solid #565656;
+}
+.use .mint-field-core{
+  margin:0!important;
+  padding-left: 10px;
+}
+.address {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.addressleft{
+  width:42px;
+  white-space: nowrap;
+}
+.texttitle{
+  color: #333;
+}
+
