@@ -30,7 +30,7 @@
                 <span>{{item.Address}}</span></div></div>
               <div class="model_bottom">
                 <div>
-                  <div><span><span class="texttitle">姓名：</span>{{item.CusName}}</span><span class="phone"><span class="texttitle">手机号：</span>{{item.Tel}}</span></div>
+                  <div><span class="nametext"><span class="texttitle">姓名：</span>{{item.CusName}}</span><div class="phone"><span class="texttitle">手机号：</span>{{item.Mobile}}</div></div>
                 </div>
               </div>
             </li>
@@ -141,19 +141,25 @@
             // 下来刷新加载
             loadFrist() {
                 var _this = this
-                this.$http.
-                get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
+                // this.$http.
+                // get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
+                this.$http({
+                    method: 'post',
+                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
-                        //BoltStatus：0 未缴费列表
-                        BoltStatus:this.boltStatus,
-                        CommunityID:_this.$store.state.communityID,  //小区id
-                        Page: this.page,      //当前页
-                        PageSize: this.pagesize,   //一页有多少条数据
-                        OperateBegTime: '',  // 时间搜索 开始时间
-                        OperateEndTime: '',  //时间搜索  结束时间
-                        BuildingNO: this.floorNO,   //楼号
-                        UnitNO: this.roomNO        //单元号
-                    }
+                        BoltStatus:0,
+                        CommunityID:_this.$store.state.communityID,
+                        Page: this.page,
+                        PageSize: this.pagesize,
+                        "OperateBegTime": '',
+                        "OperateEndTime": '',
+                        "ImplementerBegTime":'',  //this.timeStart
+                        "ImplementerEndTime":'' ,  //
+                        BuildingNO: this.floorNO,
+                        UnitNO: this.roomNO,
+                        OrderData:"Address"
+                    },
+
                 })
                     .then(response => {
                         this.current = 0;
@@ -179,17 +185,24 @@
             loadMore() {
                 var _this = this
                 console.log(this.page);
-                this.$http.
-                get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
+                // this.$http.
+                // get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
+
+                this.$http({
+                    method: 'post',
+                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
-                        BoltStatus:this.boltStatus,
+                        BoltStatus:0,
                         CommunityID:_this.$store.state.communityID,
                         Page: this.page,
                         PageSize: this.pagesize,
-                        OperateBegTime: '',
-                        OperateEndTime: '',
+                        "OperateBegTime": '',
+                        "OperateEndTime": '',
+                        "ImplementerBegTime":'',  //this.timeStart
+                        "ImplementerEndTime":'',
                         BuildingNO: this.floorNO,
-                        UnitNO: this.roomNO
+                        UnitNO: this.roomNO,
+                        OrderData:"Address"
                     }
                 })
                     .then(response => {

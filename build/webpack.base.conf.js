@@ -29,6 +29,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'vendor': path.resolve(__dirname, '../src/vendor'),
     }
   },
   module: {
@@ -45,11 +46,6 @@ module.exports = {
           presets: ['es2015']
         },
       },
-      // {
-      //   test: /\.js$/,
-      //   loader: 'babel-loader',
-      //   include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
-      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -74,7 +70,8 @@ module.exports = {
         options: {
           limit: 10000,
           name: utils.assetsPath('media/[name].[hash:7].[ext]')
-        }
+        },
+
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -82,7 +79,8 @@ module.exports = {
         options: {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-        }
+        },
+
       }
     ]
   },

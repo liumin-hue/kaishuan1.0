@@ -9,6 +9,7 @@ import {
 
 let config = {
     host: 'http://222.139.181.213:13000'//kaishuan,
+  // host: 'http://192.168.11.129:8009'//neiwang,
 }
 
 let myFun = {

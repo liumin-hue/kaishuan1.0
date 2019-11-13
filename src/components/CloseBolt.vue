@@ -1,12 +1,14 @@
 <template>
   <div class="kaishuan">
-    <mt-header title="开栓任务">
+    <mt-header title="关栓任务">
       <mt-button icon="back" slot="left" @click="back"></mt-button>
       <div slot="right" class="export">
         <form method="post" id="form">
           <img src="../../static/images/kai/mainPage/export.png" @click="exportExl">
         </form>
       </div>
+<!--      <mt-button slot="right" @click="export2Excel" class="export"><img-->
+<!--        src="../../static/images/kai/mainPage/export.png"></mt-button>-->
     </mt-header>
     <div class="search">
       <div class="search_input">
@@ -20,58 +22,72 @@
       </div>
 
     </div>
-  <div>
-    <div class="main-body" ref="wrapper" :style="{ height: (wrapperHeight-10) + 'px' }">
-      <mt-loadmore
-        :top-method="loadTop"
-        :bottom-method="loadBottom"
-        :bottom-all-loaded="allLoaded"
-        ref="loadmore"
-        :autoFill="isAutoFill"
-      >
-        <ul class="mui-table-view mui-grid-view" >
-          <li v-for="(item,index) in datas" :key="index"
-              class="mui-table-view-cell mui-media mui-col-xs-6 bolt_argument" @click="reactConfirm(index,$event)">
-            <div class="address"><div class="addressleft"><span class="texttitle">地址：</span></div><div class="addressright">
-              <span>{{item.Address}}</span></div></div>
-            <div class="model_bottom">
-              <div>
-                <div><span class="nametext"><span class="texttitle">姓名：</span>{{item.CusName}}</span><div class="phone"><span class="texttitle">手机号：</span>{{item.Mobile}}</div></div>
-                <div><span class="texttitle">下达指令时间：</span>{{item.BoltOptTime}}</div>
+    <div>
+      <div class="main-body" ref="wrapper" :style="{ height: (wrapperHeight-10) + 'px' }">
+        <mt-loadmore
+          :top-method="loadTop"
+          :bottom-method="loadBottom"
+          :bottom-all-loaded="allLoaded"
+          ref="loadmore"
+          :autoFill="isAutoFill"
+        >
+          <ul class="mui-table-view mui-grid-view">
+            <li v-for="(item,index) in datas" :key="index"
+                class="mui-table-view-cell mui-media mui-col-xs-6 bolt_argument" @click="reactConfirm(index,$event)">
+              <div class="address">
+                <div class="addressleft"><span class="texttitle">地址：</span></div>
+                <div class="addressright">
+                  <span>{{item.Address}}</span></div>
               </div>
-              <mt-button class="bolt_news" v-on:click="btnConfirm(index)">开栓</mt-button>
-            </div>
-          </li>
-        </ul>
-<!--        <div calss="finish" style="text-align: center; width: 100%;">{{bottomText}}</div>-->
-      </mt-loadmore>
+              <div class="model_bottom">
+                <div>
+                  <div><span class="nametext"><span class="texttitle">姓名：</span>{{item.CusName}}</span><div class="phone"><span class="texttitle">手机号：</span>{{item.Mobile}}</div></div>
+                  <div><span class="texttitle">下达指令时间：</span>{{item.BoltOptTime}}</div>
+                </div>
+                <mt-button class="bolt_news" v-on:click="btnConfirm(index)">关栓</mt-button>
+              </div>
+            </li>
+          </ul>
+          <!--        <div calss="finish" style="text-align: center; width: 100%;">{{bottomText}}</div>-->
+        </mt-loadmore>
+      </div>
+      <scroll-top :total=" total" :current="current" :top="top" ref="scrollTop" @click="handelGun"></scroll-top>
     </div>
-    <scroll-top :total=" total" :current="current" :top = "top" ref="scrollTop" @click="handelGun"></scroll-top>
-  </div>
   </div>
 </template>
 <script>
-    // import iconvLite from 'iconv-lite';
-    // const template = 'xxxxx'
-    import {Toast , Spinner,} from "mint-ui";
+    import Blob from '../vendor/Blob'
+    import Export2Excel from '../vendor/Export2Excel'
+    import {Toast, Spinner,} from "mint-ui";
     import scrollTop from "../component/scrollTop";
 
-    var XLSX = require("xlsx");
     var fromPath = "";
     var _this = this;
-    var dtask = null;
     export default {
+        name: "goodslist",
         components: {
             scrollTop,
-            // excel,
         },
         data() {
             return {
-                outTableData: {
-                    id: 'outTable',
-                    name: '开栓任务单'
-                },
-                chargeyear:"2019-2020",
+                list: [
+                    {
+                        name: '韩版设计时尚风衣大',
+                        number: 'MPM00112',
+                        salePrice: '￥999.00',
+                        stocknums: 3423,
+                        salesnums: 3423,
+                        sharenums: 3423,
+                    },
+                    {
+                        name: '韩版设计时尚风衣大',
+                        number: 'MPM00112',
+                        salePrice: '￥999.00',
+                        stocknums: 3423,
+                        salesnums: 3423,
+                        sharenums: 3423,
+                    },
+                ],
                 isLoading: true,
                 top: 0, //滚动条位置
                 b_topDistance: 0, //滚动条位置
@@ -130,6 +146,9 @@
                 document.documentElement.clientHeight -
                 this.$refs.wrapper.getBoundingClientRect().top;
             window.addEventListener('scroll', this.handleScroll, true)
+            // console.log(this.datas[id].BoltStatus)
+            var _this = this
+            console.log(_this.$store.state.communityID)
         },
         methods: {
             back() {
@@ -174,31 +193,30 @@
                     // url:'http://172.30.10.84:10016/ChargeSystem/Charge/GetCusBoltSet',
                     url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
-                        "BoltStatus": this.boltStatus,
+                        "BoltStatus": 2,
                         "CommunityID": _this.$store.state.communityID,
                         "Page": this.page,
                         "PageSize": this.pagesize,
                         //选择得时间
                         "OperateBegTime": '',
                         "OperateEndTime": '',
-                        "ImplementerBegTime":this.timeStart ,  //this.timeStart
-                        "ImplementerEndTime":this.timeEnd ,  //
+                        "ImplementerBegTime":'',  //this.timeStart
+                        "ImplementerEndTime":'' ,
                         //楼号
                         "BuildingNO": this.floorNO,
                         "UnitNO": this.roomNO,
                         "OrderData":"BoltOptTime desc"
                     }
                 })
-
                     .then(response => {
                         response.data.Data.forEach(function (itembolt) {
                             itembolt.BoltOptTime = itembolt.BoltOptTime.substr(0, 10) + ' ' + itembolt.BoltOptTime.substr(11, 8)
                         })
-                        console.log(response.data.Data)
+                        console.log(response)
                         this.current = 0;
                         this.total = response.data.Message
                         if (this.total == 0) {
-                            Toast("没有开栓任务")
+                            Toast("没有关栓任务")
                         }
                         this.allLoaded = false; // 可以进行上拉
                         this.datas = response.data.Data;
@@ -217,12 +235,13 @@
             loadMore() {
                 var _this = this
                 console.log(this.page);
+                // this.$http.post('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
                 this.$http({
                     method: 'post',
                     // url:'http://172.30.10.84:10016/ChargeSystem/Charge/GetCusBoltSet',
                     url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
-                        "BoltStatus": this.boltStatus,
+                        "BoltStatus":2,
                         "CommunityID": _this.$store.state.communityID,
                         "Page": this.page,
                         "PageSize": this.pagesize,
@@ -241,6 +260,7 @@
                         response.data.Data.forEach(function (itembolt) {
                             itembolt.BoltOptTime = itembolt.BoltOptTime.substr(0, 10) + ' ' + itembolt.BoltOptTime.substr(11, 8)
                         })
+                        console.log(response)
                         if (this.page <= this.allPage) {
                             this.datas = this.datas.concat(response.data.Data);
                             this.$refs.loadmore.onBottomLoaded();
@@ -261,7 +281,7 @@
                 this.current = id //数组索引
                 this.$messagebox({
                     title: null,
-                    message: '确认执行开栓命令吗？',
+                    message: '确认执行关栓命令吗？',
                     showCancelButton: true,
                     // confirmButtonText:"继续购物",
                     // cancelButtonText:"查看订单"
@@ -278,7 +298,7 @@
                             })
                         } finally {
                             this.$http.post('http://222.139.181.213:14000/ChargeSystem/Charge/OpenBolt', [{
-                            // this.$http.post('http://172.30.10.84:10016/ChargeSystem/Charge/OpenBolt', [{
+                            // this.$http.post('http://172.30.10.84:10016/ChargeSystem/Charge/CloseBolt', [{
                                     ChargeYear: this.datas[id].ChargeYear,
                                     CusID: this.datas[id].CusID,
                                     BoltID: this.datas[id].BoltID,
@@ -288,9 +308,9 @@
                                 }]
                             )
                                 .then(res => {
-                                    console.log(res);
+                                    console.log(this.datas[id].BoltStatus)
                                 })
-                            Toast('开栓成功');
+                            Toast('关栓成功');
                             this.datas.splice(id, 1)   //删除对应索引号的信息 ，从“this.current”开始 删除 “1”个
                             this.total--;
                             if (this.total == 1) {
@@ -303,39 +323,36 @@
                             this.$store.state.datas = this.datas
                         }
                     } else {
-                        console.log('取消开栓')
+                        console.log('取消关栓')
                     }
                 })
             },
             exportExl() {
                 var _this = this
+                console.log(this.boltStatus)
                 var obj = {
                     CommunityID: _this.$store.state.communityID,
-                    Title:'开栓任务单',
-                    BoltStatus: this.boltStatus,
+                    BoltStatus:2,
                     PageSize: this.pagesize,
+                    Title:'关栓任务单',
                     //选择得时间
                     "OperateBegTime": '',
                     "OperateEndTime": '',
                     "ImplementerBegTime":'',  //this.timeStart
                     "ImplementerEndTime":'' ,
+                    //楼号
                     BuildingNO: this.floorNO,
                     UnitNO: this.roomNO
                 }
                 var str = ''
-                for(var key in obj) {
-                    str +='&' + key + '=' + obj[key]
+                for (var key in obj) {
+                    str += '&' + key + '=' + obj[key]
                 }
                 console.log(str)
                 location.href = 'http://222.139.181.213:14000/ChargeSystem/Charge/CusBoltExcelExport?' + str
-                // form.action='http://172.30.10.84:10016/ChargeSystem/Charge/CusBoltExcelExport?' + str
-                // console.log(form.action)
-                // form.submit()
-            },
-
+            }
         }
     }
-
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -343,8 +360,9 @@
     /* 加上这个才会有当数据充满整个屏幕，可以进行上拉加载更多的操作 */
     overflow: scroll;
   }
+
   input[type='text'],
-  input[type='time']{
+  input[type='time'] {
     background-color: #F7F7F7;
     margin: 0;
     text-align: center;
@@ -353,10 +371,5 @@
 
   .export img {
     width: 25px;
-  }
-
-  .outTable {
-    background: url("../../static/images/kai/mainPage/export.png");
-    background-size: 25px;
   }
 </style>

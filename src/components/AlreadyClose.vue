@@ -1,6 +1,6 @@
 <template>
   <div class="kaishuan">
-    <mt-header title="已开栓">
+    <mt-header title="已关栓">
       <mt-button icon="back" slot="left" @click="back"></mt-button>
     </mt-header>
     <div class="search">
@@ -16,7 +16,6 @@
     </div>
     <div class="time">
       <div class="time_input">
-
         <input type="text" readonly @click="open('picker1')" placeholder="起始时间" class="time-btn" :value="timeStart |
         formatDate()">
         <div class="timetext">至</div>
@@ -67,8 +66,7 @@
               <div class="model_bottom">
                 <div>
                   <div><span class="nametext"><span class="texttitle">姓名：</span>{{item.CusName}}</span><div class="phone"><span class="texttitle">手机号：</span>{{item.Mobile}}</div></div>
-
-                  <div><span class="texttitle">开栓时间：</span>{{item.ImplementerTime}}</div>
+                  <div><span class="texttitle">关栓时间：</span>{{item.ImplementerTime}}</div>
                 </div>
 
               </div>
@@ -86,7 +84,6 @@
     import {formatDate} from '../../static/js/date.js'
     import scrollTop from "../component/scrollTop";
     import {Toast } from "mint-ui";
-    import CloseBolt from "./CloseBolt";
     var fromPath = "";
     var _this = this;
     export default {
@@ -205,7 +202,6 @@
                 var _this = this;
                 this.date = value.toString();
                 this.loadFrist();
-                console.log(this.date)
 
             },
             handelcancel(cancel){
@@ -239,36 +235,38 @@
                     method: 'post',
                     url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
-                        "BoltStatus": 3,
-                        "CommunityID": this.$store.state.communityID,
-                        "Page": this.page,
-                        "PageSize": this.pagesize,
+                        BoltStatus: 4,
+                        CommunityID: this.$store.state.communityID,
+                        Page: this.page,
+                        PageSize: this.pagesize,
                         //选择得时间
                         "OperateBegTime": '',
                         "OperateEndTime": '',
                         "ImplementerBegTime":this.timeStart ,  //this.timeStart
-                        "ImplementerEndTime":this.timeEnd , //
+                        "ImplementerEndTime":this.timeEnd ,  //
                         //楼号
-                        "BuildingNO": this.floorNO,
-                        "UnitNO": this.roomNO,
-                        "OrderData":"ImplementerTime desc"
+                        BuildingNO: this.floorNO,
+                        UnitNO: this.roomNO,
+                        OrderData:"ImplementerTime desc"
                     }
                 })
                     .then(response => {
-                        console.log(response)
                         response.data.Data.forEach(function (item) {
-
+                            console.log("已关栓")
+                            console.log(item.ImplementerTime)
                             if(item.ImplementerTime == null){}
                             else{
                                 item.ImplementerTime = item.ImplementerTime.substr(0,10)+' '+item.ImplementerTime.substr(11,8)
                             }
+
                         })
+                        console.log(this.$store.state.communityID)
                         this.current = 0
                         this.total = response.data.Message
                         if(this.timeStart>this.timeEnd & this.timeEnd!=0){
                             Toast("请选择有效的时间段")
                         }else if(this.total==0){
-                            Toast("没有已开栓的用户")
+                            Toast("没有已关栓的用户")
                         }else{
                             _this.$store.state.timeStart=this.timeStart
                             _this.$store.state.timeEnd=this.timeEnd
@@ -297,33 +295,38 @@
                     method: 'post',
                     url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
-                        "BoltStatus": 3,
-                        "CommunityID": this.$store.state.communityID,
-                        "Page": this.page,
-                        "PageSize": this.pagesize,
+                        BoltStatus: 4,
+                        CommunityID: this.$store.state.communityID,
+                        Page: this.page,
+                        PageSize: this.pagesize,
                         //选择得时间
                         "OperateBegTime": '',
                         "OperateEndTime": '',
                         "ImplementerBegTime":this.timeStart ,  //this.timeStart
-                        "ImplementerEndTime":this.timeEnd ,  //
+                        "ImplementerEndTime":this.timeEnd ,  //his.timeEnd
                         //楼号
-                        "BuildingNO": this.floorNO,
-                        "UnitNO": this.roomNO,
-                        "OrderData":"ImplementerTime desc"
+                        BuildingNO: this.floorNO,
+                        UnitNO: this.roomNO,
+                        OrderData:"ImplementerTime desc"
                     }
                 })
                     .then(response => {
                         // concat数组的追加
+                        console.log(response)
+
                         response.data.Data.forEach(function (item) {
+                            console.log(item.ImplementerTime)
                             if(item.ImplementerTime == null){}
                             else{
                                 item.ImplementerTime = item.ImplementerTime.substr(0,10)+' '+item.ImplementerTime.substr(11,8)
                             }
+
                         })
 
                         if (this.page <= this.allPage) {
                             console.log(this.allPage)
                             console.log(this.page)
+                            this.datas = response.data.Data;
                             this.datas = this.datas.concat(response.data.Data);
                             this.$refs.loadmore.onBottomLoaded();
                         }else if( this.page > this.allPage){
@@ -331,7 +334,9 @@
                             this.$refs.loadmore.onBottomLoaded();
                             Toast("没有更多了")
                         }else{
+
                         }
+
                     })
                     .catch(error => {
                         console.log(error);

@@ -14,6 +14,12 @@
       <mt-cell title="已开栓" to="/alreadybolt" is-link>
         <img slot="icon" src="../../static/images/kai/mainPage/already.png" class="img_bolt">
       </mt-cell>
+      <mt-cell title="关栓任务" to="/closebolt" is-link>
+        <img slot="icon" src="../../static/images/kai/mainPage/closebolt.png" class="img_bolt">
+      </mt-cell>
+      <mt-cell title="已关栓" to="/alreadyclose" is-link>
+        <img slot="icon" src="../../static/images/kai/mainPage/alreadyclose.png" class="img_bolt">
+      </mt-cell>
       <mt-cell title="未缴费" to="/nopay" is-link>
         <img slot="icon" src="../../static/images/kai/mainPage/pay.png" class="img_bolt">
       </mt-cell>

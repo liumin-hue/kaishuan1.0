@@ -12,22 +12,30 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import axios from 'axios'
+// import '../static/render/css/mui.css';
 import App from './App'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import MyPluginAddConfig from './myPlugin';
+import XLSX from 'xlsx'
+import FileSaver  from 'file-saver';
+import ScriptLoader from 'script-loader'
+
 // import date from '../static/js/date'
 import home from './components/home'
 import login from "./components/login"
 import host from "./components/host"
 import bolt from './components/bolt'
+import CloseBolt from './components/CloseBolt'
 import AlreadyBolt from  './components/AlreadyBolt'
+import AlreadyClose from  './components/AlreadyClose'
 import Set from './components/Set'
 import NoPay from './components/NoPay'
 import ResetNews from './components/ResetNews'
 import ResetPassword from './components/ResetPassword'
 import page from './components/bolt'
-
+import Blob from './vendor/Blob'
+import Export2Excel from './vendor/Export2Excel'
 
 
 
@@ -40,6 +48,8 @@ Vue.config.productionTip = false
 Vue.use(Vuex);
 Vue.use(VueRouter)
 Vue.use(MintUI)
+Vue.use(XLSX)
+Vue.use(ScriptLoader)
 
 Vue.prototype.$http=axios
 // Vue.prototype.$=jquery
@@ -51,12 +61,15 @@ const routes=[
   {path:'/home', name:"homeLink",component: home},
   {path:'/host',component: host},
   {path:'/bolt', name:"boltLink",component: bolt},
+  {path:'/closebolt', name:"closeboltLink",component: CloseBolt},
   {path:'/alreadybolt', name:"alreadyboltLink",component: AlreadyBolt},
+  {path:'/alreadyclose', name:"alreadycloseLink",component: AlreadyClose},
   {path:'/nopay', name:"nopayLink",component: NoPay},
   {path:'/set', name:"setLink",component: Set},
   {path:'/resetnews', name:"resetnewsLink",component: ResetNews},
   {path:'/resetpassword', name:"resetpasswordLink",component: ResetPassword},
   {path:'/page', name:"pageLink",component: page},
+
 
 ]
 const router = new VueRouter({

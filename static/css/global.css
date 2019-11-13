@@ -355,7 +355,10 @@ input::-webkit-input-placeholder{
 
 }
 .phone{
-  padding-left: 50px;
+   display: inline-block;
+ }
+.nametext{
+  padding-right: 20px;
 }
 .list_model{
   width: 100%;
