@@ -191,7 +191,7 @@
                 this.$http({
                     method: 'post',
                     // url:'http://172.30.10.84:10016/ChargeSystem/Charge/GetCusBoltSet',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         "BoltStatus": 2,
                         "CommunityID": _this.$store.state.communityID,
@@ -235,11 +235,9 @@
             loadMore() {
                 var _this = this
                 console.log(this.page);
-                // this.$http.post('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
                 this.$http({
                     method: 'post',
-                    // url:'http://172.30.10.84:10016/ChargeSystem/Charge/GetCusBoltSet',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         "BoltStatus":2,
                         "CommunityID": _this.$store.state.communityID,
@@ -297,8 +295,7 @@
                             }).then(res => {
                             })
                         } finally {
-                            this.$http.post('http://222.139.181.213:14000/ChargeSystem/Charge/OpenBolt', [{
-                            // this.$http.post('http://172.30.10.84:10016/ChargeSystem/Charge/CloseBolt', [{
+                            this.$http.post(this.$myConfig.host + '/ChargeSystem/Charge/OpenBolt', [{
                                     ChargeYear: this.datas[id].ChargeYear,
                                     CusID: this.datas[id].CusID,
                                     BoltID: this.datas[id].BoltID,
@@ -349,7 +346,7 @@
                     str += '&' + key + '=' + obj[key]
                 }
                 console.log(str)
-                location.href = 'http://222.139.181.213:14000/ChargeSystem/Charge/CusBoltExcelExport?' + str
+                location.href = this.$myConfig.host + '/ChargeSystem/Charge/CusBoltExcelExport?' + str
             }
         }
     }

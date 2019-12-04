@@ -112,7 +112,7 @@
             handleScroll(scrollTop){
                 this.top = this.$refs.wrapper.scrollTop;//滚动条距离父组件ref= wrapper 的距离高度
                 console.log(this.top)
-                this.current = Math.floor(this.top/120)+1;   //当前第几条数据
+                this.current = Math.floor(this.top/90)+1;   //当前第几条数据
                 console.log(this.current)
             },
             //top置顶
@@ -145,7 +145,7 @@
                 // get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
                 this.$http({
                     method: 'post',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         BoltStatus:0,
                         CommunityID:_this.$store.state.communityID,
@@ -185,12 +185,9 @@
             loadMore() {
                 var _this = this
                 console.log(this.page);
-                // this.$http.
-                // get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
-
                 this.$http({
                     method: 'post',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         BoltStatus:0,
                         CommunityID:_this.$store.state.communityID,

@@ -7,11 +7,19 @@ import {
     Popup
 } from "mint-ui";
 
-let config = {
-    host: 'http://222.139.181.213:13000'//kaishuan,
-  // host: 'http://192.168.11.129:8009'//neiwang,
+// let config = {
+//     host: 'http://222.139.181.213:13000'//kaishuan,
+//   // host: 'http://192.168.11.129:8009'//neiwang,
+// }
+let configg = {
+  // host: 'http://222.139.181.213:13000'//kaishuan,
+  host: 'http://192.168.11.129:8009'  //LiBin,
 }
-
+//杜薇接口
+let config = {
+  // host: 'http://222.139.181.213:14000'//kaishuan,
+  host: 'http://172.30.10.84:10016'  //duwei,
+}
 let myFun = {
     //对象数组去重方法
     arrDistinct: function (arr) {
@@ -342,7 +350,8 @@ let myFun = {
 
 export default {
     install: function (Vue) {
-        Vue.prototype.$myConfig = config;
+      Vue.prototype.$myConfig = config;
+      Vue.prototype.$myConfigg = configg;
         Vue.prototype.$myFun = myFun;
     }
 }

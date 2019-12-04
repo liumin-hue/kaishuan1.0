@@ -29,13 +29,14 @@ import bolt from './components/bolt'
 import CloseBolt from './components/CloseBolt'
 import AlreadyBolt from  './components/AlreadyBolt'
 import AlreadyClose from  './components/AlreadyClose'
-import Set from './components/Set'
+import Set from './components/setclone'
+import version from './components/versions'
 import NoPay from './components/NoPay'
 import ResetNews from './components/ResetNews'
 import ResetPassword from './components/ResetPassword'
 import page from './components/bolt'
-import Blob from './vendor/Blob'
-import Export2Excel from './vendor/Export2Excel'
+// import Blob from './vendor/Blob'
+// import Export2Excel from './vendor/Export2Excel'
 
 
 
@@ -66,6 +67,7 @@ const routes=[
   {path:'/alreadyclose', name:"alreadycloseLink",component: AlreadyClose},
   {path:'/nopay', name:"nopayLink",component: NoPay},
   {path:'/set', name:"setLink",component: Set},
+  {path:'/versions', name:"versions",component: version},
   {path:'/resetnews', name:"resetnewsLink",component: ResetNews},
   {path:'/resetpassword', name:"resetpasswordLink",component: ResetPassword},
   {path:'/page', name:"pageLink",component: page},

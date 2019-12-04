@@ -43,7 +43,7 @@
           mounted: function () {
           // console.log(this.$store.state.UserInfo)
               var _this = this
-          this.$http.get(this.$myConfig.host + '/api/Home/GetCommunitysByUserID',{
+          this.$http.get(this.$myConfigg.host + '/api/Home/GetCommunitysByUserID',{
               params:{
                   UserID: _this.$store.state.User.UserID
               }

@@ -171,8 +171,7 @@
                 var _this = this
                 this.$http({
                     method: 'post',
-                    // url:'http://172.30.10.84:10016/ChargeSystem/Charge/GetCusBoltSet',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         "BoltStatus": this.boltStatus,
                         "CommunityID": _this.$store.state.communityID,
@@ -219,8 +218,7 @@
                 console.log(this.page);
                 this.$http({
                     method: 'post',
-                    // url:'http://172.30.10.84:10016/ChargeSystem/Charge/GetCusBoltSet',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         "BoltStatus": this.boltStatus,
                         "CommunityID": _this.$store.state.communityID,
@@ -269,7 +267,7 @@
                     if (action == 'confirm') {
                         try {
                             // 开栓完成之后 给 李彬传信息（不获取任何值）
-                            this.$http.post(this.$myConfig.host + '/api/Home/InsertOpenLog', {
+                            this.$http.post(this.$myConfigg.host + '/api/Home/InsertOpenLog', {
                                 "ID": this.$store.state.communityID,
                                 "UserID": _this.$store.state.User.UserID,
                                 "OpenTime": "",
@@ -277,8 +275,7 @@
                             }).then(res => {
                             })
                         } finally {
-                            this.$http.post('http://222.139.181.213:14000/ChargeSystem/Charge/OpenBolt', [{
-                            // this.$http.post('http://172.30.10.84:10016/ChargeSystem/Charge/OpenBolt', [{
+                            this.$http.post(this.$myConfig.host + '/ChargeSystem/Charge/OpenBolt', [{
                                     ChargeYear: this.datas[id].ChargeYear,
                                     CusID: this.datas[id].CusID,
                                     BoltID: this.datas[id].BoltID,
@@ -327,7 +324,7 @@
                     str +='&' + key + '=' + obj[key]
                 }
                 console.log(str)
-                location.href = 'http://222.139.181.213:14000/ChargeSystem/Charge/CusBoltExcelExport?' + str
+                location.href = this.$myConfig.host + '/ChargeSystem/Charge/CusBoltExcelExport?' + str
                 // form.action='http://172.30.10.84:10016/ChargeSystem/Charge/CusBoltExcelExport?' + str
                 // console.log(form.action)
                 // form.submit()

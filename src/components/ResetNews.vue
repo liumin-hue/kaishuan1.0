@@ -58,7 +58,7 @@
                     MessageBox.confirm("确定保存设置?").then(action => {
                         //修改密码接口
                         //修改密码 和手机号
-                        this.$http.post(this.$myConfig.host + '/Api/Home/UpdateUserInfo', {
+                        this.$http.post(this.$myConfigg.host + '/Api/Home/UpdateUserInfo', {
                             "UserID":this.$store.state.User.UserID,
                             "UserName":this.$store.state.User.UserName,
                             "RealName":this.realName,

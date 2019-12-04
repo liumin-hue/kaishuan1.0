@@ -233,7 +233,7 @@
                 // this.$http.get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
                 this.$http({
                     method: 'post',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         BoltStatus: 4,
                         CommunityID: this.$store.state.communityID,
@@ -293,7 +293,7 @@
                 // this.$http.get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
                 this.$http({
                     method: 'post',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         BoltStatus: 4,
                         CommunityID: this.$store.state.communityID,

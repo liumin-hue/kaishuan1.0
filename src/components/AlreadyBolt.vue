@@ -237,7 +237,7 @@
                 // this.$http.get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
                 this.$http({
                     method: 'post',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         "BoltStatus": 3,
                         "CommunityID": this.$store.state.communityID,
@@ -292,10 +292,9 @@
             // 加载更多
             loadMore() {
                 console.log(this.page);
-                // this.$http.get('http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet', {
                 this.$http({
                     method: 'post',
-                    url:'http://222.139.181.213:14000/ChargeSystem/Charge/GetCusBoltSet',
+                    url:this.$myConfig.host + '/ChargeSystem/Charge/GetCusBoltSet',
                     params: {
                         "BoltStatus": 3,
                         "CommunityID": this.$store.state.communityID,

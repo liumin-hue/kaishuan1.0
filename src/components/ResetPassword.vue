@@ -56,7 +56,7 @@
                         //修改密码接口
                         //修改密码 和手机号
                         console.log(this.NewPasword)
-                            this.$http.post(this.$myConfig.host + '/Api/Home/UpdateUserInfo', {
+                            this.$http.post(this.$myConfigg.host + '/Api/Home/UpdateUserInfo', {
                                 "UserID":_this.$store.state.User.UserID,
                                 "UserName":_this.$store.state.User.UserName,
                                 "RealName":_this.$store.state.User.RealName,
